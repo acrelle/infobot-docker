@@ -1,0 +1,10 @@
+--- IrcHelpers.pl.orig	2017-09-10 16:31:10.392871539 +0000
++++ IrcHelpers.pl	2017-09-10 16:38:40.142024030 +0000
+@@ -80,6 +80,7 @@
+ 
+     $message =~ s/[\cA-\c_]//ig;    # strip control characters
+     $message =~ s/^\s+//;           # initial whitespaces.
++    $message =~ s/^\<[a-zA-Z0-9]+\>\s+//; # discord bridge chars AR 09/09/2017
+     $who     =~ tr/A-Z/a-z/;        # lowercase.
+     my $mynick = $conn->nick();
+ 
