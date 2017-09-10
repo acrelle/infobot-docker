@@ -22,7 +22,8 @@ VOLUME /root/infobot-code/log/
 
 #DISCORD bridge patch to keep this thing alive
 ADD discord.patch /tmp
+ADD annoying.patch /tmp
 RUN cd /root/infobot-code/src/IRC && cat /tmp/discord.patch | patch
-
+RUN cd /root/infobot-code/src/Factoids && cat /tmp/annoying.patch | patch
 WORKDIR /root/infobot-code/
 ENTRYPOINT ["./infobot"]

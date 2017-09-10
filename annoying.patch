@@ -1,0 +1,11 @@
+--- Question.pl.orig	2017-09-10 18:13:18.820773724 +0000
++++ Question.pl	2017-09-10 18:13:49.660713346 +0000
+@@ -22,7 +22,7 @@
+     # following is used in math()...
+     local ($query) = @_;
+     local ($reply) = '';
+-    local $finalQMark = $query =~ s/\?+\s*$//;
++    local $finalQMark = 1;
+     $query =~ s/^\s+|\s+$//g;
+ 
+     if ( !defined $query or $query =~ /^\s*$/ ) {
