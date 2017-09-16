@@ -1,0 +1,11 @@
+--- Schedulers.pl.orig	2017-09-16 13:46:57.179925494 +0000
++++ Schedulers.pl	2017-09-16 13:53:39.068960907 +0000
+@@ -750,7 +750,7 @@
+             else {
+                 &status( 'ircCheck: possible lost in space; checking.'
+                       . scalar(gmtime) );
+-                &msg( $mynick, 'TEST' );
++                &msg( $nick, 'TEST' );
+                 $cache{connect} = time();
+             }
+         }
