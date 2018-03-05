@@ -1,5 +1,5 @@
 FROM arm32v7/debian:latest
-MAINTAINER acrelle
+LABEL maintainer="anthony@relle.co.uk"
 
 # set version label
 ARG BUILD_DATE
