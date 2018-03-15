@@ -11,8 +11,8 @@ ADD annoying.patch /tmp
 ADD schedulers.patch /tmp
 # install build packages
 RUN apt-get update && \
- apt-get install -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl subversion patch && \
-cd /root/ && svn checkout https://svn.code.sf.net/p/infobot/code/trunk infobot-code && \
+ apt-get install -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl subversion patch 
+RUN cd /root/ && svn checkout https://svn.code.sf.net/p/infobot/code/trunk infobot-code && \
  apt-get remove -y subversion && \
  apt-get autoremove -y && \
  apt-get purge -y  && \
@@ -24,4 +24,4 @@ cd /root/ && svn checkout https://svn.code.sf.net/p/infobot/code/trunk infobot-c
 VOLUME /root/infobot-code/files/
 VOLUME /root/infobot-code/log/
 WORKDIR /root/infobot-code/
-ENTRYPOINT ["./infobot"]
+ENTRYPOINT ["/root/infobot-code/infobot"]
