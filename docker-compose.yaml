@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  infobot:
+    build: .
+    image: acrelle/rpi-infobot
+    container_name: infobot
+    network_mode: bridge
+    restart: always
+    volumes:
+      - ~/appdata/infobot/infobot_data/infobot.sqlite:/root/infobot-code/infobot.sqlite 
+      - ~/appdata/infobot/infobot_data/files/:/root/infobot-code/files/ 
+      - ~/appdata/infobot/infobot_data/log/:/root/infobot-code/log/
