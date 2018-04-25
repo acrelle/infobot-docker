@@ -1,7 +1,7 @@
 FROM arm32v7/debian:latest
 LABEL maintainer="anthony@relle.co.uk"
 
-ADD discord.patch annoying.patch schedulers.patch /tmp
+ADD discord.patch annoying.patch schedulers.patch /tmp/
 
 # install build packages
 RUN apt-get update && \
