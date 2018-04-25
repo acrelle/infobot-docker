@@ -1,14 +1,8 @@
 FROM arm32v7/debian:latest
 LABEL maintainer="anthony@relle.co.uk"
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
+ADD discord.patch annoying.patch schedulers.patch /tmp
 
-
-ADD discord.patch /tmp
-ADD annoying.patch /tmp
-ADD schedulers.patch /tmp
 # install build packages
 RUN apt-get update && \
  apt-get install -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl subversion patch && \
@@ -21,7 +15,6 @@ RUN apt-get update && \
  cd /root/infobot-code/src/IRC && cat /tmp/schedulers.patch | patch
 
 # ports and volumes
-VOLUME /root/infobot-code/files/
-VOLUME /root/infobot-code/log/
+VOLUME ["/root/infobot-code/files/", "/root/infobot-code/log/" ]
 WORKDIR /root/infobot-code/
 ENTRYPOINT ["/root/infobot-code/infobot"]
