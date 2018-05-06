@@ -16,9 +16,8 @@ https://hub.docker.com/r/acrelle/rpi-infobot/
 ## Usage
 
 ```
-docker run -dt -v infobot.sqlite:/root/infobot-code/infobot.sqlite 
--v files:/root/infobot-code/files/
- -v log:/root/infobot-code/log/ 
+docker run -dt -v files:/home/infobot/infobot-code/files \
+-v log:/home/infobot/infobot-code/log \
 acrelle/infobot:latest
 ```
 
@@ -36,7 +35,6 @@ services:
     network_mode: bridge
     restart: always
     volumes:
-      - ~/appdata/infobot/infobot_data/infobot.sqlite:/root/infobot-code/infobot.sqlite 
-      - ~/appdata/infobot/infobot_data/files/:/root/infobot-code/files/ 
-      - ~/appdata/infobot/infobot_data/log/:/root/infobot-code/log/
+      - ~/appdata/infobot/infobot_data/files:/home/infobot/infobot-code/files 
+      - ~/appdata/infobot/infobot_data/log:/home/infobot/infobot-code/log
 ```
