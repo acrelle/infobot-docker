@@ -32,17 +32,17 @@ script:
       # Push all images
       travis_retry timeout 5m docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
       docker tag acrelle/infobot:linux-amd64 acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-amd64
-      #docker tag acrelle/infobot:linux-arm acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
+      docker tag acrelle/infobot:linux-arm acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
 
       # push version for each platform
       docker push acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-amd64
-      #docker push acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
+      docker push acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
 
       # Download manifest-tool
-      #wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
-      #mv manifest-tool-linux-amd64 manifest-tool
-      #chmod +x manifest-tool
+      wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
+      mv manifest-tool-linux-amd64 manifest-tool
+      chmod +x manifest-tool
       # Push manifest-list
-      #./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:$TRAVIS_BUILD_NUMBER"
-      #./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:latest"
+      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:$TRAVIS_BUILD_NUMBER"
+      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:latest"
     fi
