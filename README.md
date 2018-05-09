@@ -22,7 +22,7 @@ https://hub.docker.com/r/acrelle/infobot/
 ```
 docker run -dt -v files:/home/infobot/infobot-code/files \
 -v log:/home/infobot/infobot-code/log \
-acrelle/infobot:latest
+acrelle/infobot
 ```
 
 ## Docker Compose
