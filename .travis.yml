@@ -1,4 +1,4 @@
- sudo: required
+sudo: required
 
 services:
 - docker
@@ -11,11 +11,11 @@ script:
   # - curl -fsSL https://get.docker.com/ | sudo sh
 
   # Build all images
-  - docker build --build-arg PLATFORM=linux-amd64 -t acrelle/influxgateway:linux-amd64 -f Dockerfile .
+  - docker build --build-arg PLATFORM=linux-amd64 -t acrelle/infobot:linux-amd64 -f Dockerfile .
   
-  prepare qemu
+  # prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  get qemu-arm-static binary
+  # get qemu-arm-static binary
   - mkdir tmp
   - >
     pushd tmp &&
@@ -23,25 +23,25 @@ script:
     tar xzf qemu-arm-static.tar.gz &&
     popd
   
-  - docker build --build-arg PLATFORM=linux-arm -t acrelle/influxgateway:linux-arm -f linux-arm32v7.Dockerfile .
+  - docker build --build-arg PLATFORM=linux-arm -t acrelle/infobot:linux-arm -f linux-arm32v7.Dockerfile .
 
   - >
 
     if [ -n "$TRAVIS_BUILD_NUMBER" ]; then
       # Push all images
       travis_retry timeout 5m docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-      docker tag acrelle/influxgateway:linux-amd64 acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-linux-amd64
-      docker tag acrelle/influxgateway:linux-arm acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-linux-arm
+      docker tag acrelle/infobot:linux-amd64 acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-amd64
+      docker tag acrelle/infobot:linux-arm acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
 
       # push version for each platform
-      docker push acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-linux-amd64
-      docker push acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-linux-arm
+      docker push acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-amd64
+      docker push acrelle/infobot:${TRAVIS_BUILD_NUMBER}-linux-arm
 
       # Download manifest-tool
       wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
       mv manifest-tool-linux-amd64 manifest-tool
       chmod +x manifest-tool
       # Push manifest-list
-      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/influxgateway:$TRAVIS_BUILD_NUMBER"
-      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/influxgateway:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/influxgateway:latest"
+      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:$TRAVIS_BUILD_NUMBER"
+      ./manifest-tool push from-args --platforms linux/amd64,linux/arm --template "acrelle/infobot:${TRAVIS_BUILD_NUMBER}-OS-ARCH" --target "acrelle/infobot:latest"
     fi
