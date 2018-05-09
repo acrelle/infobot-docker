@@ -1,4 +1,4 @@
-FROM arm32v7/debian:latest
+FROM arm32v7/debian
 LABEL maintainer="anthony@relle.co.uk"
 COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 
@@ -10,7 +10,7 @@ ARG PGID=100
 RUN groupadd -o -g ${PGID} -r infobot && useradd --no-log-init -r -o -u ${PUID} -g infobot -m infobot
 
 # install build packages
-RUN apt-get update && \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
  apt-get install -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl git patch && \
  cd /home/infobot/ && git clone https://github.com/acrelle/infobot.git infobot-code && \
  cd /home/infobot/infobot-code/src/IRC && cat /tmp/discord.patch | patch && \
