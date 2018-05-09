@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM arm32v7/debian:latest
 LABEL maintainer="anthony@relle.co.uk"
 
 ADD discord.patch annoying.patch schedulers.patch /tmp/
