@@ -1,6 +1,6 @@
-# infobot
+# infobot-docker
 
-Raspberry Pi Infobot installation based on debian (Raspberry Pi 2 onwards).
+Raspberry Pi Infobot installation based on debian. Built for both amd64 and arm32v7 (Raspberry Pi 2 onwards).
 
 Contains some custom patches.
 
@@ -20,9 +20,10 @@ https://hub.docker.com/r/acrelle/infobot/
 ## Usage
 
 ```
-docker run -dt -v files:/home/infobot/infobot-code/files \
--v log:/home/infobot/infobot-code/log \
-acrelle/infobot
+docker run -dt \
+    -v files:/home/infobot/infobot-code/files \
+    -v log:/home/infobot/infobot-code/log \
+    acrelle/infobot
 ```
 
 ## Docker Compose
