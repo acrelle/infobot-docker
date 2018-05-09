@@ -3,7 +3,7 @@ version: "2"
 services:
   infobot:
     build: .
-    image: acrelle/rpi-infobot
+    image: acrelle/infobot
     container_name: infobot
     restart: unless-stopped
     volumes:

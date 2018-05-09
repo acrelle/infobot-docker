@@ -1,6 +1,6 @@
-# rpi-infobot
+# infobot
 
-Raspberry Pi Infobot installation, uses arm32v7/debian:latest (Raspberry Pi 2 onwards).
+Raspberry Pi Infobot installation based on debian (Raspberry Pi 2 onwards).
 
 Contains some custom patches.
 
@@ -9,9 +9,13 @@ Source: https://github.com/acrelle/infobot-docker
 Infobot Source: https://svn.code.sf.net/p/infobot/code/trunk 
 
 ## Build 
-[![](https://images.microbadger.com/badges/version/acrelle/rpi-infobot.svg)](https://microbadger.com/images/acrelle/rpi-infobot "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/acrelle/rpi-infobot.svg)](https://microbadger.com/images/acrelle/rpi-infobot "Get your own image badge on microbadger.com")[![Build Status](https://jenkins.relle.uk/buildStatus/icon?job=rpi-infobot)](https://jenkins.relle.uk/job/rpi-infobot)
+[![](https://images.microbadger.com/badges/version/acrelle/infobot.svg)](https://microbadger.com/images/acrelle/infobot "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/acrelle/infobot.svg)](https://microbadger.com/images/acrelle/infobot "Get your own image badge on microbadger.com")![](https://travis-ci.com/acrelle/infobot-docker.svg?branch=master)
 
-https://hub.docker.com/r/acrelle/rpi-infobot/
+https://hub.docker.com/r/acrelle/infobot/
+
+### Supported architectures
+
+`amd64`,`arm32v7`
 
 ## Usage
 
@@ -30,7 +34,7 @@ version: "2"
 services:
   infobot:
     build: .
-    image: acrelle/rpi-infobot
+    image: acrelle/infobot
     container_name: infobot
     network_mode: bridge
     restart: always
