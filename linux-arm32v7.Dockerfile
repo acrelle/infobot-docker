@@ -1,6 +1,5 @@
 FROM arm32v7/debian
 LABEL maintainer="anthony@relle.co.uk"
-COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 
 ADD discord.patch annoying.patch schedulers.patch /tmp/
 
