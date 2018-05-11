@@ -1,5 +1,7 @@
-FROM arm32v7/debian
+FROM resin/armv7hf-debian
 LABEL maintainer="anthony@relle.co.uk"
+
+RUN [ "cross-build-start" ]
 
 ADD discord.patch annoying.patch schedulers.patch /tmp/
 
@@ -10,7 +12,7 @@ RUN groupadd -o -g ${PGID} -r infobot && useradd --no-log-init -r -o -u ${PUID} 
 
 # install build packages
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
- apt-get install -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl git patch && \
+ apt-get install --no-install-recommends -y libnet-irc-perl libwww-search-perl libwww-perl libhtml-parser-perl libxml-feed-perl libsqlite0 libdbd-sqlite3-perl git patch && \
  cd /home/infobot/ && git clone https://github.com/acrelle/infobot.git infobot-code && \
  cd /home/infobot/infobot-code/src/IRC && cat /tmp/discord.patch | patch && \
  cd /home/infobot/infobot-code/src/Factoids && cat /tmp/annoying.patch | patch && \
@@ -20,6 +22,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
  rm -rf /var/lib/apt/lists/* && \
  chown -R infobot:infobot /home/infobot/infobot-code
  
+RUN [ "cross-build-end" ]
+
 # ports and volumes
 USER infobot
 VOLUME ["/home/infobot/infobot-code/files", "/home/infobot/infobot-code/log" ]
