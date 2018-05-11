@@ -7,7 +7,7 @@ script:
 
   # Build all images
   - docker build --build-arg PLATFORM=linux-amd64 -t acrelle/infobot:linux-amd64 -f Dockerfile .
-  - docker build --build-arg PLATFORM=linux-arm -t acrelle/infobot:linux-arm -f Dockerfile-linux-arm32v7 .
+  - docker build --build-arg PLATFORM=linux-arm -t acrelle/infobot:linux-arm -f Dockerfile.linux-arm32v7 .
 
   - >
 
